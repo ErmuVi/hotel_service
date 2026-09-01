@@ -1,0 +1,39 @@
+[project]
+name = "hotel-service"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic-settings (>=2.15.0,<3.0.0)",
+    "psycopg2-binary (>=2.9.12,<3.0.0)",
+    "django (>=6.1,<7.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.16.5,<0.17.0)"
+]
+
+[tool.ruff]
+line-length = 120
+src = ["src"]
+# Исключаем системные папки и автогенерируемый код Django
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "migrations",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"] # Базовые правила проверки ошибок и импортов
+
