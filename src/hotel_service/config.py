@@ -18,14 +18,15 @@ class Settings(BaseSettings):
 
     
     model_config = SettingsConfigDict(
-        
         env_file=[
             CURRENT_DIR / "../../.env",  
             ".env",                      
         ],
+        env_file_required=False,  
         env_file_encoding="utf-8",
         extra="ignore",                 
     )
+
 
 
 settings = Settings()
