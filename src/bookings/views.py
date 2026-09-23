@@ -116,7 +116,7 @@ def create_booking(request):
         except ValueError:
             return JsonResponse({"error": "Dates must be in YYYY-MM-DD format and be valid"}, status=400)
 
-        if date_start > date_end:
+        if date_start >= date_end:
             return JsonResponse({"error": "start_booking cannot be after end_booking"}, status=400)
 
         overlapping_bookings = Booking.objects.filter(
@@ -129,7 +129,7 @@ def create_booking(request):
             return JsonResponse({"error": "Room is already booked for these dates"}, status=400)
 
         booking = Booking.objects.create(
-            room_id=room_id, # Передаем чистую цифру-строку из POST-запроса
+            room_id=room_id,
             start_booking=date_start,
             end_booking=date_end
         )
@@ -138,7 +138,7 @@ def create_booking(request):
         return JsonResponse({"booking_id": booking.id}, status=201)
 
     except Exception as e:
-        return JsonResponse({"error": f"Internal server error: {str(e)}"}, status=500)
+        return JsonResponse({"error": f"Internal server error: {str(e)}"}, status=400)
 
 
 @csrf_exempt
@@ -155,7 +155,7 @@ def delete_booking(request):
         return JsonResponse({"status": "success"}, status=200)
     
     except Exception as e:
-        return JsonResponse({"error": f"Internal server error: {str(e)}"}, status=500)
+        return JsonResponse({"error": f"Internal server error: {str(e)}"}, status=400)
 
 
 @csrf_exempt
