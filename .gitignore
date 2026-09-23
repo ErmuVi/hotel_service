@@ -1,0 +1,26 @@
+# Секреты и настройки окружения
+.env
+.env.*
+!.env.example
+
+# Виртуальное окружение Poetry и зависимости
+.venv/
+poetry.lock
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# База данных по умолчанию (если используете локальную SQLite)
+*.sqlite3
+
+# Настройки сред разработки (IDE)
+.vscode/
+.idea/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
